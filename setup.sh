@@ -22,16 +22,14 @@ if [[ ! -f "/srv/www/${DOMAIN}/public_html/wp-config-sample.php" ]]; then
     noroot wp core download
 
     # Setup MySQL Database
-    noroot mysql -uroot -e "CREATE USER '${DOMAIN}'@'localhost' IDENTIFIED BY '${DOMAIN}';"
-    noroot mysql -uroot -e "GRANT USAGE ON *.* TO '${DOMAIN}'@'localhost';"
     noroot mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${DOMAIN};"
-    noroot mysql -uroot -e "GRANT ALL PRIVILEGES ON ${DOMAIN}.* TO '${DOMAIN}'@'localhost';"
+    noroot mysql -uroot -e "GRANT ALL PRIVILEGES ON ${DOMAIN}.* TO 'wp'@'localhost';"
     noroot mysql -uroot -e "FLUSH PRIVILEGES;"
 
     noroot sed -i "/DB_HOST/s/'[^']*'/'localhost'/2" wp-config.php
     noroot sed -i "/DB_NAME/s/'[^']*'/'${DOMAIN}'/2" wp-config.php
-    noroot sed -i "/DB_USER/s/'[^']*'/'${DOMAIN}'/2" wp-config.php
-    noroot sed -i "/DB_PASSWORD/s/'[^']*'/'${DOMAIN}'/2" wp-config.php
+    noroot sed -i "/DB_USER/s/'[^']*'/'wp'/2" wp-config.php
+    noroot sed -i "/DB_PASSWORD/s/'[^']*'/'wp'/2" wp-config.php
 
     # Installing WordPress
     echo "Install WordPress"
