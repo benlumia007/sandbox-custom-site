@@ -69,4 +69,5 @@ if [[ ! -d "/vagrant/certificates/${DOMAIN}" ]]; then
     noroot openssl genrsa -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.key" 4096
     noroot openssl req -new -key "/vagrant/certificates/${DOMAIN}/${DOMAIN}.key" -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.csr" -subj "/CN=${DOMAIN}"
     noroot openssl x509 -req -in "/vagrant/certificates/${DOMAIN}/${DOMAIN}.csr" -CA "/vagrant/certificates/ca/ca.crt" -CAkey "/vagrant/certificates/ca/ca.key" -CAcreateserial -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.crt" -days 3650 -sha256 -extfile "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
+    noroot sed -i '/certificate/s/^#//g' /etc/apache2/sites-available/${DOMAIN}.conf
 fi
