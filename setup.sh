@@ -66,7 +66,9 @@ if [[ ! -d "/vagrant/certificates/${DOMAIN}" ]]; then
     cp "/srv/config/certificates/domain.ext" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
     sed -i -e "s/{{DOMAIN}}/${DOMAIN}/g" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
 
-    noroot openssl genrsa -out "/vagrant/certificates/${DOMAIN}/dev.key" 4096
-    noroot openssl req -new -key "/vagrant/certificates/${DOMAIN}/dev.key" -out "/vagrant/certificates/${DOMAIN}/dev.csr" -subj "/CN=${DOMAIN}"
-    noroot openssl x509 -req -in "/vagrant/certificates/${DOMAIN}/dev.csr" -CA "/vagrant/certificates/ca/ca.key" -CAcreateserial -out "/vagrant/certificates/${DOMAIN}/dev.crt" -days 3650 -sha256 -extfile "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
+    noroot openssl genrsa -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.key" 4096
+    # noroot openssl req -new -key "/vagrant/certificates/${DOMAIN}/dev.key" -out "/vagrant/certificates/${DOMAIN}/dev.csr" -subj "/CN=${DOMAIN}"
+    # noroot openssl x509 -req -in "/vagrant/certificates/${DOMAIN}/dev.csr" -CA "/vagrant/certificates/ca/ca.key" -CAcreateserial -out "/vagrant/certificates/${DOMAIN}/dev.crt" -days 3650 -sha256 -extfile "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
+    # noroot openssl x509 -req -in "/vagrant/certificates/$domain.csr -CA /certificates/$root/$root.pem -CAkey /certificates/$root/$root.key -CAcreateserial -out $domain.crt -days 3650 -sha256 -extfile $domain.ext
+
 fi
