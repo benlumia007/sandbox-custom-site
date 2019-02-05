@@ -45,7 +45,7 @@ if [[ ! -f "/srv/www/${DOMAIN}/public_html/wp-config-sample.php" ]]; then
     noroot wget https://raw.githubusercontent.com/WPTRT/theme-unit-test/master/themeunittestdata.wordpress.xml
     echo
     echo "Importing Theme Unit Test, this will take a few minutes to complete"
-    nroot wp import themeunittestdata.wordpress.xml --authors=skip
+    noroot wp import themeunittestdata.wordpress.xml --authors=skip
     noroot rm themeunittestdata.wordpress.xml
     echo
     echo "Install Addition Plugins"
