@@ -36,4 +36,29 @@ if [[ ! -f "/srv/www/${DOMAIN}/public_html/wp-config-sample.php" ]]; then
     # Installing WordPress
     echo "Install WordPress"
     noroot wp core install  --url=https://${DOMAIN}.test --title=${DOMAIN} --admin_user=admin --admin_password=password --admin_email=admin@${DOMAIN}.test
+    echo
+    # Download WordPress Importer
+    echo "Download and Install WordPress Installer"
+    noroot wp plugin install wordpress-importer --activate
+    echo
+    echo "Downloading Theme Unit Test..."
+    noroot wget https://raw.githubusercontent.com/WPTRT/theme-unit-test/master/themeunittestdata.wordpress.xml
+    echo
+    echo "Importing Theme Unit Test, this will take a few minutes to complete"
+    nroot wp import themeunittestdata.wordpress.xml --authors=skip
+    noroot rm themeunittestdata.wordpress.xml
+    echo
+    echo "Install Addition Plugins"
+    noroot wp plugin uninstall hello
+    noroot wp plugin uninstall akismet
+    noroot wp plugin install theme-check --activate
+    noroot wp plugin install debug-bar --activate
+    noroot wp plugin install debug-bar-console --activate
+    noroot wp plugin install debug-bar-cron --activate
+    noroot wp plugin install monster-widget --activate
+    noroot wp plugin install regenerate-thumbnails --activate
+    noroot wp plugin install jetpack --activate
+    noroot wp plugin install developer --activate
+    noroot wp plugin install query-monitor --activate
+    noroot wp plugin install https://github.com/WPTRT/theme-sniffer/releases/download/0.1.5/theme-sniffer.0.1.5.zip --activate
 fi
