@@ -11,7 +11,7 @@ if [[ ! -f /etc/apache2/sites-available/${DOMAIN}.conf ]]; then
   service apache2 restart
 fi
 
-if [[ ! -d ${VM_DIR} ]]; then
+if [[ ! -d ${VM_DIR}/public_html ]]; then
     echo "Creating ${VM_DIR}/public_html"
     mkdir -p ${VM_DIR}/public_html
 fi
