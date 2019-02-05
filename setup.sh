@@ -60,3 +60,12 @@ if [[ ! -f "/srv/www/${DOMAIN}/public_html/wp-config-sample.php" ]]; then
     noroot wp plugin install query-monitor --activate
     noroot wp plugin install https://github.com/WPTRT/theme-sniffer/releases/download/0.1.5/theme-sniffer.0.1.5.zip --activate
 fi
+
+if [[ ! -d "/vagrant/certificates/${DOMAIN}" ]]; then
+    mkdir -p "/vagrant/certificates/${DOMAIN}"
+    cp "/srv/config/certificates/domain.ext" "/vagrant/certificates/${DOMAIN}/domain.ext"
+
+    noroot openssl genrsa -out "/vagrant/certificates/${DOMAIN}/dev.key" 4096
+    noroot openssl req -new -key "vagrant/certificates/${DOMAIN}/dev.key" -out "/vagrant/certifictes/${DOMAIN}/dev.csr" -subj "/CN=${DOMAIN}"
+    noroot openssl x509 -req -in "/vagrant/certifictes/${DOMAIN}/dev.csr" -CA "/vagrant/certificates/ca/ca.key" -CAcreateserial -out "/vagrant/certificates/${DOMAIN}/dev.crt" -days 3650 -sha256 -extfile "/vagrant/certificates/${DOMAIN}/domain.ext"
+fi
