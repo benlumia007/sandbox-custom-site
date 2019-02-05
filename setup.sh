@@ -10,3 +10,8 @@ if [[ ! -f /etc/apache2/sites-available/${DOMAIN}.conf ]]; then
   echo "restarting apache server"
   service apache2 restart
 fi
+
+if [[ ! -d ${VM_DIR} ]]; then
+    echo -e "Creating ${VM_DIR}/public_html"
+    mkdir -p ${VM_DIR}/public_html
+fi
