@@ -63,8 +63,8 @@ fi
 
 if [[ ! -d "/vagrant/certificates/${DOMAIN}" ]]; then
     mkdir -p "/vagrant/certificates/${DOMAIN}"
-    cp "/srv/config/certificates/domain.ext" "/vagrant/certificates/${DOMAIN}/domain.ext"
-    sed -i -e "s/{{DOMAIN}}/$domain/g" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
+    cp "/srv/config/certificates/domain.ext" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
+    sed -i -e "s/{{DOMAIN}}/${DOMAIN}/g" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
 
     noroot openssl genrsa -out "/vagrant/certificates/${DOMAIN}/dev.key" 4096
     noroot openssl req -new -key "vagrant/certificates/${DOMAIN}/dev.key" -out "/vagrant/certifictes/${DOMAIN}/dev.csr" -subj "/CN=${DOMAIN}"
