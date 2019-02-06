@@ -61,14 +61,3 @@ if [[ ! -f "/srv/www/${DOMAIN}/public_html/wp-config-sample.php" ]]; then
     noroot wp plugin install https://github.com/WPTRT/theme-sniffer/releases/download/0.1.5/theme-sniffer.0.1.5.zip --activate
     noroot wp config shuffle-salts
 fi
-
-if [[ ! -d "/vagrant/certificates/${DOMAIN}" ]]; then
-    mkdir -p "/vagrant/certificates/${DOMAIN}"
-    cp "/srv/config/certificates/domain.ext" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
-    sed -i -e "s/{{DOMAIN}}/${DOMAIN}/g" "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
-
-    noroot openssl genrsa -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.key" 4096
-    noroot openssl req -new -key "/vagrant/certificates/${DOMAIN}/${DOMAIN}.key" -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.csr" -subj "/CN=${DOMAIN}"
-    noroot openssl x509 -req -in "/vagrant/certificates/${DOMAIN}/${DOMAIN}.csr" -CA "/vagrant/certificates/ca/ca.crt" -CAkey "/vagrant/certificates/ca/ca.key" -CAcreateserial -out "/vagrant/certificates/${DOMAIN}/${DOMAIN}.crt" -days 3650 -sha256 -extfile "/vagrant/certificates/${DOMAIN}/${DOMAIN}.ext"
-    sed -i '/certificate/s/^#//g' /etc/apache2/sites-available/${DOMAIN}.conf
-fi
