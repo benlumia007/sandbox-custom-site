@@ -59,6 +59,7 @@ if [[ ! -f "/srv/www/${DOMAIN}/public_html/wp-config-sample.php" ]]; then
     noroot wp plugin install developer --activate
     noroot wp plugin install query-monitor --activate
     noroot wp plugin install https://github.com/WPTRT/theme-sniffer/releases/download/0.1.5/theme-sniffer.0.1.5.zip --activate
+    noroot wp config shuffle-salts
 fi
 
 if [[ ! -d "/vagrant/certificates/${DOMAIN}" ]]; then
