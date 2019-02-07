@@ -7,8 +7,6 @@ if [[ ! -f /etc/apache2/sites-available/${DOMAIN}.conf ]]; then
   sed -i -e "s/{{DOMAIN}}/${DOMAIN}/g" "/etc/apache2/sites-available/${DOMAIN}.conf"
   echo "enable ${DOMAIN}"
   a2ensite ${DOMAIN}.conf
-  echo "restarting apache server"
-  service apache2 restart
 fi
 
 if [[ ! -d ${VM_DIR}/public_html ]]; then
