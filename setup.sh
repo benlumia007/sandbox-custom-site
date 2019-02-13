@@ -6,7 +6,7 @@ if [[ ! -f /etc/apache2/sites-available/${domain}.conf ]]; then
   cp "/srv/config/apache/apache.conf" "/etc/apache2/sites-available/${domain}.conf"
   sed -i -e "s/{{DOMAIN}}/${domain}/g" "/etc/apache2/sites-available/${domain}.conf"
   echo "enable ${domain}"
-  a2ensite ${domain}.conf
+  a2ensite ${domain}.conf -q
 fi
 
 if [[ ! -d ${vm_dir}/public_html ]]; then
