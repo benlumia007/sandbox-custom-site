@@ -19,9 +19,9 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     noroot wp core download
 
     # Setup MySQL Database
-    noroot mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${domain};"
-    noroot mysql -uroot -e "GRANT ALL PRIVILEGES ON ${domain}.* TO 'wp'@'localhost';"
-    noroot mysql -uroot -e "FLUSH PRIVILEGES;"
+    noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
+    noroot mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';"
+    noroot mysql -u root -e "FLUSH PRIVILEGES;"
 
     noroot sed -i "/DB_HOST/s/'[^']*'/'localhost'/2" wp-config.php
     noroot sed -i "/DB_NAME/s/'[^']*'/'${domain}'/2" wp-config.php
