@@ -36,14 +36,10 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     noroot wp plugin uninstall hello
     noroot wp plugin uninstall akismet
     noroot wp plugin install theme-check --activate
-    noroot wp plugin install debug-bar --activate
-    noroot wp plugin install debug-bar-console --activate
-    noroot wp plugin install debug-bar-cron --activate
     noroot wp plugin install monster-widget --activate
     noroot wp plugin install regenerate-thumbnails --activate
     noroot wp plugin install jetpack --activate
-    noroot wp plugin install developer --activate
     noroot wp plugin install query-monitor --activate
-    noroot wp plugin install https://github.com/WPTRT/theme-sniffer/releases/download/0.1.5/theme-sniffer.0.1.5.zip --activate
+    noroot wp plugin install theme-sniffer --activate
     noroot wp config shuffle-salts
 fi
