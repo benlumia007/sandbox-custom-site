@@ -2,7 +2,7 @@
 
 # This should create the basic .conf file for a specific site when it is doing a provision.
 if [[ ! -f /etc/apache2/sites-available/${domain}.conf ]]; then
-  echo "Copying apache2.conf    /etc/apache2/sites-available/${domain}.conf"
+  echo "copying apache2.conf to /etc/apache2/sites-available/${domain}.conf"
   cp "/srv/config/apache/apache.conf" "/etc/apache2/sites-available/${domain}.conf"
   sed -i -e "s/{{DOMAIN}}/${domain}/g" "/etc/apache2/sites-available/${domain}.conf"
   a2ensite ${domain}.conf -q
