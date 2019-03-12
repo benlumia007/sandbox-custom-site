@@ -32,17 +32,6 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     echo "Install WordPress"
     noroot wp core install  --url=https://${domain}.test --title=${domain} --admin_user=admin --admin_password=password --admin_email=admin@${domain}.test
     echo
-    # Download WordPress Importer
-    echo "Download and Install WordPress Installer"
-    noroot wp plugin install wordpress-importer --activate
-    echo
-    echo "Downloading Theme Unit Test..."
-    noroot wget https://raw.githubusercontent.com/WPTRT/theme-unit-test/master/themeunittestdata.wordpress.xml
-    echo
-    echo "Importing Theme Unit Test, this will take a few minutes to complete"
-    noroot wp import themeunittestdata.wordpress.xml --authors=skip
-    noroot rm themeunittestdata.wordpress.xml
-    echo
     echo "Install Addition Plugins"
     noroot wp plugin uninstall hello
     noroot wp plugin uninstall akismet
