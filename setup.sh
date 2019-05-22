@@ -41,8 +41,7 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     noroot wp config shuffle-salts
 fi
 
-plugins=`get_config_value 'plugins' ''`
-if [[ ! -z "${plugins}" ]]; then
-    for plugin in ${plugins//- /$'\n'}; do
-      noroot wp plugin install "${plugin}" --activate
-fi
+WP_PLUGINS=`get_config_value 'plugins' ''`
+if [ ! -z "${WP_PLUGINS}" ]; then
+    for plugin in ${WP_PLUGINS//- /$'\n'}; do 
+        noroot wp plugin install "${plugin}" --activate
