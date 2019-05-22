@@ -32,4 +32,11 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     echo "Install WordPress"
     noroot wp core install  --url=https://${domain}.test --title=${domain} --admin_user=admin --admin_password=password --admin_email=admin@${domain}.test
     noroot wp config shuffle-salts
+    
+    plugins=`get_config_value 'plugins' ''`
+    if [[ ! -z "${plugins}" ]]; then
+      for plugin in ${plugins}; do
+        noroot wp plugin install "${plugin}" --activate
+      done
+    fi
 fi
