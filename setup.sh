@@ -41,3 +41,5 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     noroot wp plugin install theme-sniffer --activate
     noroot wp config shuffle-salts
 fi
+
+exit 1
