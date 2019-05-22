@@ -44,4 +44,3 @@ fi
 plugins=`get_config_value 'plugins' ''`
 if [[ ! -z "${plugins}" ]]; then
 
-fi
