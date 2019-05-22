@@ -31,19 +31,5 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     # Installing WordPress
     echo "Install WordPress"
     noroot wp core install  --url=https://${domain}.test --title=${domain} --admin_user=admin --admin_password=password --admin_email=admin@${domain}.test
-    echo
-    echo "Install Addition Plugins"
-    noroot wp plugin uninstall hello
-    noroot wp plugin uninstall akismet
-    noroot wp plugin install theme-check --activate
-    noroot wp plugin install jetpack --activate
-    noroot wp plugin install theme-sniffer --activate
     noroot wp config shuffle-salts
-fi
-
-plugins=`get_config_value 'plugins' ''`
-if [[ ! -z "${plugins}" ]]; then
-  for plugin in ${plugins}; do
-    noroot wp plugin install "${plugin}" --activate
-  done
 fi
