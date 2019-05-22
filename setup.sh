@@ -42,6 +42,6 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
 fi
 
 plugins=`get_config_value 'plugins' ''`
-if [[ ! -z "${plugins} ]]; then
+if [[ ! -z "${plugins}" ]]; then
 
 fi
