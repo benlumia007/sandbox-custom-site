@@ -40,9 +40,3 @@ if [[ ! -z "${plugins}" ]]; then
     noroot wp plugin install "${plugin}" --path="/srv/www/${domain}/public_html" --activate
   done
 fi
-
-if [[ -z "${plugins}" ]]; then
-  for plugin in ${plugins//- /$'\n'}; do
-    noroot wp plugin delete "${plugin}" --path="/srv/www/${domain}/public_html"
-  done
-fi
