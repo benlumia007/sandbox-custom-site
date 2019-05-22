@@ -43,4 +43,7 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
 fi
 
 plugins=`get_config_value 'plugins' ''`
-echo ${plugins}
+if [[ ! -z "${plugins}" ]]; then
+    for plugin in ${plugins}; do
+      noroot wp plugin install ${plugin} --activate
+fi
