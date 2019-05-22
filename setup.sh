@@ -44,4 +44,3 @@ fi
 
 plugins=`get_config_value 'plugin`
 echo ${plugins}
-exit 1
