@@ -43,5 +43,7 @@ fi
 
 plugins=`get_config_value 'plugins' ''`
 if [[ ! -z "${plugins}" ]]; then
-  echo ${plugins}
+  for plugin in ${plugins}; do
+  
+  done
 fi
