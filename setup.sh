@@ -38,7 +38,7 @@ plugins=`get_config_value 'plugins' ''`
 if [[ ! -z "${plugins}" ]]; then
   for plugin in ${plugins//- /$'\n'}; do
     noroot wp plugin install "${plugin}" --path="/srv/www/${domain}/public_html" --activate
-  don
+  done
 fi
 
 if [[ -z "${plugins}" ]]; then
