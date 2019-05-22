@@ -37,7 +37,6 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     noroot wp plugin uninstall akismet
     noroot wp plugin install theme-check --activate
     noroot wp plugin install jetpack --activate
-    noroot wp plugin install query-monitor --activate
     noroot wp plugin install theme-sniffer --activate
     noroot wp config shuffle-salts
 fi
@@ -46,4 +45,3 @@ plugins=`get_config_value 'plugins' ''`
 if [[ ! -z "${plugins}" ]]; then
     for plugin in ${plugins}; do
       noroot wp plugin install ${plugin} --activate
-fi
