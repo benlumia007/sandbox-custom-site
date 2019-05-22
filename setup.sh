@@ -43,7 +43,7 @@ fi
 
 plugins=`get_config_value 'plugins' ''`
 if [[ ! -z "${plugins}" ]]; then
-  for plugin in ${plugins}; do
-    echo ${plugin}
+  for plugin in ${plugins//- /$'\n}; do
+    noroot wp plugin install ${plugin} --activate
   done
 fi
