@@ -43,6 +43,6 @@ fi
 
 if [[ -z "${plugins}" ]]; then
   for plugin in ${plugins//- /$'\n'}; do
-    echo ${plugin}
+    noroot wp plugin delete "${plugin}" --path="/srv/www/${domain}/public_html"
   done
 fi
