@@ -42,5 +42,5 @@ if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
     noroot wp config shuffle-salts
 fi
 
-plugins=`get_config_value 'sites.${1}.plugins'`
+plugins=`get_config_value sites.${1}.plugins`
 echo ${plugins}
