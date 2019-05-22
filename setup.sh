@@ -41,6 +41,6 @@ if [[ ! -z "${plugins}" ]]; then
   done
 else if [[ -z "${plugins}" ]]; then
   for plugin in ${plugins//- /$'\n'}; do
-    
+    echo ${plugin}
   done
 fi
