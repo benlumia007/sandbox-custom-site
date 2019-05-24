@@ -36,5 +36,9 @@ if [[ "${type}" != "none" ]]; then
         echo "Install WordPress"
         noroot wp core install  --url=https://${domain}.test --title=${domain} --admin_user=admin --admin_password=password --admin_email=admin@${domain}.test
         noroot wp config shuffle-salts
+
+        if [[ "${plugins}" != "none" ]]; then
+          echo "shit"
+        fi
     fi
 fi
