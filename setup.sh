@@ -2,6 +2,7 @@
 
 plugins=`get_config_value 'plugins' ''`
 type=`get_config_value 'type' 'single'`
+title=`get_config_value 'title' "${domain}.test"`
 
 
 if [[ "${type}" != "none" ]]; then
@@ -35,7 +36,7 @@ if [[ "${type}" != "none" ]]; then
 
         # Installing WordPress
         echo "Install WordPress"
-        noroot wp core install  --url="https://${domain}.test" --title="superman" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
+        noroot wp core install  --url="https://${domain}.test" --title="${title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
         noroot wp config shuffle-salts
 
         if [[ "${plugins}" != "none" ]]; then
