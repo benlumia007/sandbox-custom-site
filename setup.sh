@@ -2,9 +2,10 @@
 
 plugins=`get_config_value 'plugins' ''`
 type=`get_config_value 'type' 'single'`
-title=`get_config_value 'title' ''`
+
 
 if [[ "${type}" != "none" ]]; then
+    title=`get_config_value 'title' ''`
     # This should create the basic .conf file for a specific site when it is doing a provision.
     if [[ ! -f /etc/apache2/sites-available/${domain}.conf ]]; then
       echo "copying apache2.conf to /etc/apache2/sites-available/${domain}.conf"
