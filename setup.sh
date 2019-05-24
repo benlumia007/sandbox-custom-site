@@ -41,6 +41,8 @@ if [[ "${type}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
             if [[ "${plugin}" == "plugins" ]]; then
               echo ""
+            else
+              echo ${plugin}
             fi
           done
         fi
