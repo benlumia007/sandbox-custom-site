@@ -47,5 +47,7 @@ if [[ "${type}" != "none" ]]; then
             fi
           done
         fi
+
+        echo ${title}
     fi
 fi
