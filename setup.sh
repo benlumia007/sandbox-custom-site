@@ -34,13 +34,17 @@ if [[ "${type}" != "none" ]]; then
         noroot sed -i "/DB_USER/s/'[^']*'/'wp'/2" wp-config.php
         noroot sed -i "/DB_PASSWORD/s/'[^']*'/'wp'/2" wp-config.php
 
-        if [[ "${title}" == "title" ]]; then
-          echo ""
+        if [[ "${title}" != "none" ]]; then
+          for site_title in ${title}; do
+            if [[ "${site_title}" == "title" ]]; then
+              echo ""
+            fi
+          done
         fi
 
         # Installing WordPress
         echo "Install WordPress"
-        noroot wp core install  --url="https://${domain}.test" --title="${title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
+        noroot wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
         noroot wp config shuffle-salts
 
         if [[ "${plugins}" != "none" ]]; then
