@@ -1,7 +1,7 @@
 #!/bin/bash
 
 plugins=`get_config_value 'plugins' ''`
-type=`get_config_value 'type' 'latest'`
+type=`get_config_value 'type' 'single'`
 
 if [[ "${type}" != "none" ]]; then
     # This should create the basic .conf file for a specific site when it is doing a provision.
