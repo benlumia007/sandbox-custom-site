@@ -39,7 +39,9 @@ if [[ "${type}" != "none" ]]; then
 
         if [[ "${plugins}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
-            echo ${plugin}
+            if [[ "${plugin}" == "plugins" ]]; then
+              echo ""
+            fi
           done
         fi
     fi
