@@ -42,7 +42,7 @@ if [[ "${type}" != "none" ]]; then
             if [[ "${plugin}" == "plugins" ]]; then
               echo ""
             else
-              echo ${plugin}
+              noroot wp plugin install ${plugin} --activate
             fi
           done
         fi
