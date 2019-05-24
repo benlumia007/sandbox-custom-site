@@ -38,7 +38,9 @@ if [[ "${type}" != "none" ]]; then
         noroot wp config shuffle-salts
 
         if [[ "${plugins}" != "none" ]]; then
-          echo "shit"
+          for plugin in ${plugins//- /$'\n'}; do
+            echo ${plugin}
+          done
         fi
     fi
 fi
