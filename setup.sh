@@ -44,15 +44,15 @@ if [[ "${type}" != "none" ]]; then
 
         # Installing WordPress
         echo "Install WordPress"
-        www wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
-        www wp config shuffle-salts
+        noroot wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
+        noroot wp config shuffle-salts
 
         if [[ "${plugins}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
             if [[ "${plugin}" == "plugins" ]]; then
               echo ""
             else
-              www wp plugin install ${plugin} --activate
+              noroot wp plugin install ${plugin} --activate
             fi
           done
         fi
