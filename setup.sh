@@ -11,7 +11,6 @@ if [[ "${type}" != "none" ]]; then
       echo "copying nginx.conf to /etc/etc/nginx/conf.d/${domain}.conf"
       cp "/srv/config/nginx/nginx.conf" "/etc/nginx/conf.d/${domain}.conf"
       sed -i -e "s/{{DOMAIN}}/${domain}/g" "/etc/nginx/conf.d/${domain}.conf"
-      a2ensite ${domain}.conf -q
     fi
 
     if [[ ! -d ${vm_dir}/public_html ]]; then
