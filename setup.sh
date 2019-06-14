@@ -9,7 +9,7 @@ if [[ "${type}" != "none" ]]; then
     # This should create the basic .conf file for a specific site when it is doing a provision.
     if [[ ! -f /etc/nginx/conf.d/${domain}.conf ]]; then
       echo "copying nginx.conf to /etc/etc/nginx/conf.d/${domain}.conf"
-      cp "/srv/config/apache/apache.conf" "/etc/etc/nginx/conf.d/${domain}.conf"
+      cp "/srv/config/nginx/nginx.conf" "/etc/etc/nginx/conf.d/${domain}.conf"
       sed -i -e "s/{{DOMAIN}}/${domain}/g" "/etc/etc/nginx/conf.d/${domain}.conf"
       a2ensite ${domain}.conf -q
     fi
