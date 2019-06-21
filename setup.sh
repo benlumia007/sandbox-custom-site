@@ -1,6 +1,7 @@
 #!/bin/bash
 
 plugins=`get_config_value 'plugins' ''`
+themes=`get_config_value 'themes' ''`
 type=`get_config_value 'type' 'single'`
 title=`get_config_value 'title' "${domain}.test"`
 
