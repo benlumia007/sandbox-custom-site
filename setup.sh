@@ -23,7 +23,7 @@ if [[ "${type}" != "none" ]]; then
 
         # Setup MySQL Database
         noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
-        noroot mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';"
+        noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'wordpress';"
         noroot mysql -u root -e "FLUSH PRIVILEGES;"
 
         noroot sed -i "/DB_HOST/s/'[^']*'/'localhost'/2" wp-config.php
