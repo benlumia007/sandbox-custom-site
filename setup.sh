@@ -53,7 +53,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${constants}" != "none" ]]; then
           for const in ${constants//- /$'\n'}; do
-            if [[ "${const}" == "plugins" ]]; then
+            if [[ "${const}" == "constants" ]]; then
               echo ""
             else
               echo ${const}
