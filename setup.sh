@@ -43,7 +43,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${themes}" != "none" ]]; then
           for theme in ${themes//- /$'\n'}; do
-            if [[ "${theme}" == "plugins" ]]; then
+            if [[ "${theme}" == "themes" ]]; then
               echo ""
             else
               noroot wp theme install ${theme} --activate --quiet
