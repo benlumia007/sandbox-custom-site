@@ -39,6 +39,16 @@ if [[ "${type}" == "WordPress" ]]; then
             fi
           done
         fi
+
+        if [[ "${themes}" != "none" ]]; then
+          for theme in ${themes//- /$'\n'}; do
+            if [[ "${theme}" == "plugins" ]]; then
+              echo ""
+            else
+              noroot wp theme install ${theme} --activate --quiet
+            fi
+          done
+        fi
     fi
   elif [[ "${type}" == "ClassicPress" ]]; then
     if [[ ! -f "${vm_dir}/public_html/wp-config-sample.php" ]]; then
@@ -69,6 +79,16 @@ if [[ "${type}" == "WordPress" ]]; then
               echo ""
             else
               noroot wp plugin install ${plugin} --activate --quiet
+            fi
+          done
+        fi
+
+        if [[ "${themes}" != "none" ]]; then
+          for theme in ${themes//- /$'\n'}; do
+            if [[ "${theme}" == "plugins" ]]; then
+              echo ""
+            else
+              noroot wp theme install ${theme} --activate --quiet
             fi
           done
         fi
