@@ -5,7 +5,7 @@ themes=`get_config_value 'themes' ''`
 type=`get_config_value 'type' ''`
 title=`get_config_value 'title' "${domain}.test"`
 
-if [[ "${type}" != "none" ]]; then
+if [[ "${type}" == "WordPress" ]]; then
     if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
         cd ${vm_dir}/public_html
         noroot wp core download
@@ -41,4 +41,6 @@ if [[ "${type}" != "none" ]]; then
           done
         fi
     fi
+  elif [[ "${type}" == "ClassicPress" ]]; then
+    echo "${type}"
 fi
