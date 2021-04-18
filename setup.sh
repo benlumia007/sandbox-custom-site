@@ -3,6 +3,7 @@
 plugins=`get_config_value 'plugins' ''`
 themes=`get_config_value 'themes' ''`
 type=`get_config_value 'type' ''`
+constants=`get_config_value 'type' ''`
 title=`get_config_value 'title' "${domain}.test"`
 
 if [[ "${type}" == "WordPress" ]]; then
@@ -46,6 +47,16 @@ if [[ "${type}" == "WordPress" ]]; then
               echo ""
             else
               noroot wp theme install ${theme} --activate --quiet
+            fi
+          done
+        fi
+
+        if [[ "${constants}" != "none" ]]; then
+          for const in ${constants//- /$'\n'}; do
+            if [[ "${const}" == "plugins" ]]; then
+              echo ""
+            else
+              echo ${const}
             fi
           done
         fi
