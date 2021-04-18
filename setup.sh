@@ -11,7 +11,6 @@ if [[ "${type}" != "none" ]]; then
     fi
 
     if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
-        cp "/srv/config/wordpress/wp-config.php" "/srv/www/${domain}/public_html/wp-config.php"
         cd ${vm_dir}/public_html
         noroot wp core download
 
