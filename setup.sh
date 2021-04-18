@@ -8,7 +8,7 @@ title=`get_config_value 'title' "${domain}.test"`
 if [[ "${type}" == "WordPress" ]]; then
     if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
         cd ${vm_dir}/public_html
-        noroot wp core download
+        noroot wp core download --quiet
         noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=wordpress --dbpass=wordpress
 
         # Setup MySQL Database
