@@ -2,7 +2,7 @@
 
 plugins=`get_config_value 'plugins' ''`
 themes=`get_config_value 'themes' ''`
-type=`get_config_value 'type' 'single'`
+type=`get_config_value 'type' ''`
 title=`get_config_value 'title' "${domain}.test"`
 
 echo ${type}
