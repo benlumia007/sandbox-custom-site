@@ -3,7 +3,7 @@
 plugins=`get_config_value 'plugins' ''`
 themes=`get_config_value 'themes' ''`
 type=`get_config_value 'type' ''`
-constants=`get_config_value 'type' ''`
+constants=`get_config_value 'constants' ''`
 title=`get_config_value 'title' "${domain}.test"`
 
 if [[ "${type}" == "WordPress" ]]; then
