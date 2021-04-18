@@ -24,9 +24,7 @@ if [[ "${type}" == "WordPress" ]]; then
             fi
           done
         fi
-
-        # Installing WordPress
-        echo "Install WordPress"
+        
         noroot wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --quiet
         noroot wp plugin delete akismet --quiet
         noroot wp plugin delete hello --quiet
@@ -62,7 +60,6 @@ if [[ "${type}" == "WordPress" ]]; then
           done
         fi
 
-          # Installing WordPress
           noroot wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
           noroot wp plugin delete akismet
           noroot wp plugin delete hello
