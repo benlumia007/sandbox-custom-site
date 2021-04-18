@@ -14,6 +14,7 @@ if [[ "${type}" == "WordPress" ]]; then
         # Setup MySQL Database
         noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
         noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'wordpress';"
+        noroot mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* to 'wordpress'@'%' WITH GRANT OPTION;"
         noroot mysql -u root -e "FLUSH PRIVILEGES;"
 
         if [[ "${title}" != "none" ]]; then
@@ -50,6 +51,7 @@ if [[ "${type}" == "WordPress" ]]; then
           # Setup MySQL Database
           noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
           noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'classicpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'classicpress';"
+          noroot mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* to 'classicpress'@'%' WITH GRANT OPTION;"
           noroot mysql -u root -e "FLUSH PRIVILEGES;"
 
         if [[ "${title}" != "none" ]]; then
