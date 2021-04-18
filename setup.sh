@@ -43,8 +43,8 @@ if [[ "${type}" == "WordPress" ]]; then
   elif [[ "${type}" == "ClassicPress" ]]; then
     if [[ ! -f "${vm_dir}/public_html/wp-config-sample.php" ]]; then
           cd ${vm_dir}/public_html
-          noroot wp core download https://www.classicpress.net/latest.zip
-          noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=classicpress --dbpass=classicpress
+          noroot wp core download https://www.classicpress.net/latest.zip --quiet
+          noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=classicpress --dbpass=classicpress --quiet
 
           # Setup MySQL Database
           noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
@@ -60,17 +60,15 @@ if [[ "${type}" == "WordPress" ]]; then
           done
         fi
 
-          noroot wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
-          noroot wp plugin delete akismet
-          noroot wp plugin delete hello
-          noroot wp config shuffle-salts
+          noroot wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --quiet
+          noroot wp config shuffle-salts --quiet
 
         if [[ "${plugins}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
             if [[ "${plugin}" == "plugins" ]]; then
               echo ""
             else
-              noroot wp plugin install ${plugin} --activate
+              noroot wp plugin install ${plugin} --activate --quiet
             fi
           done
         fi
