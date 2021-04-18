@@ -13,16 +13,12 @@ if [[ "${type}" != "none" ]]; then
     if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
         cd ${vm_dir}/public_html
         noroot wp core download
+        noroot wp config create --dbhost=mysql --dbname=${domain} --dbuser=wordpress --dbpass=wordpress
 
         # Setup MySQL Database
         noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
         noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'wordpress';"
         noroot mysql -u root -e "FLUSH PRIVILEGES;"
-
-        noroot sed -i "/DB_HOST/s/'[^']*'/'localhost'/2" wp-config.php
-        noroot sed -i "/DB_NAME/s/'[^']*'/'${domain}'/2" wp-config.php
-        noroot sed -i "/DB_USER/s/'[^']*'/'wp'/2" wp-config.php
-        noroot sed -i "/DB_PASSWORD/s/'[^']*'/'wp'/2" wp-config.php
 
         if [[ "${title}" != "none" ]]; then
           for site_title in ${title}; do
