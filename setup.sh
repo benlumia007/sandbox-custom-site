@@ -56,7 +56,7 @@ if [[ "${type}" == "WordPress" ]]; then
             if [[ "${const}" == "constants" ]]; then
               echo ""
             else
-              echo ${const}
+              noroot wp config set --type=constant ${const} --raw true
             fi
           done
         fi
