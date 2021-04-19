@@ -10,7 +10,8 @@ if [[ "${type}" == "WordPress" ]]; then
     if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
         cd ${vm_dir}/public_html
         noroot wp core download --quiet
-        noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=wordpress --dbpass=wordpress --quiet
+        noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=wordpress --dbpass=wordpress
+        exit 1
 
         # Setup MySQL Database
         noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
