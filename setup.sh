@@ -34,9 +34,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${plugins}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
-            if [[ "${plugin}" == "plugins" ]]; then
-              echo ""
-            else
+            if [[ "${plugin}" != "plugins" ]]; then
               noroot wp plugin install ${plugin} --activate --quiet
             fi
           done
@@ -44,9 +42,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${themes}" != "none" ]]; then
           for theme in ${themes//- /$'\n'}; do
-            if [[ "${theme}" == "themes" ]]; then
-              echo ""
-            else
+            if [[ "${theme}" != "themes" ]]; then
               noroot wp theme install ${theme} --activate --quiet
             fi
           done
@@ -54,9 +50,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${constants}" != "none" ]]; then
           for const in ${constants//- /$'\n'}; do
-            if [[ "${const}" == "constants" ]]; then
-              echo ""
-            else
+            if [[ "${const}" != "constants" ]]; then
               noroot wp config set --type=constant ${const} --raw true --quiet
             fi
           done
@@ -88,9 +82,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${plugins}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
-            if [[ "${plugin}" == "plugins" ]]; then
-              echo ""
-            else
+            if [[ "${plugin}" != "plugins" ]]; then
               noroot wp plugin install ${plugin} --activate --quiet
             fi
           done
@@ -98,9 +90,7 @@ if [[ "${type}" == "WordPress" ]]; then
 
         if [[ "${themes}" != "none" ]]; then
           for theme in ${themes//- /$'\n'}; do
-            if [[ "${theme}" == "plugins" ]]; then
-              echo ""
-            else
+            if [[ "${theme}" != "plugins" ]]; then
               noroot wp theme install ${theme} --activate --quiet
             fi
           done
