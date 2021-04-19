@@ -9,15 +9,15 @@ title=`get_config_value 'title' "${domain}.test"`
 if [[ "${type}" == "WordPress" ]]; then
     if [[ ! -f "/srv/www/${domain}/public_html/wp-config-sample.php" ]]; then
         cd ${vm_dir}/public_html
-        noroot wp core download --quiet
-        noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=wordpress --dbpass=wordpress
-        exit 1
 
         # Setup MySQL Database
         noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
         noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'wordpress';"
         noroot mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* to 'wordpress'@'%' WITH GRANT OPTION;"
         noroot mysql -u root -e "FLUSH PRIVILEGES;"
+        
+        noroot wp core download --quiet
+        noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=wordpress --dbpass=wordpress --quiet
 
         if [[ "${title}" != "none" ]]; then
           for site_title in ${title}; do
@@ -65,14 +65,15 @@ if [[ "${type}" == "WordPress" ]]; then
   elif [[ "${type}" == "ClassicPress" ]]; then
     if [[ ! -f "${vm_dir}/public_html/wp-config-sample.php" ]]; then
           cd ${vm_dir}/public_html
-          noroot wp core download https://www.classicpress.net/latest.zip --quiet
-          noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=classicpress --dbpass=classicpress --quiet
-
+          
           # Setup MySQL Database
           noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
           noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'classicpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'classicpress';"
           noroot mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* to 'classicpress'@'%' WITH GRANT OPTION;"
           noroot mysql -u root -e "FLUSH PRIVILEGES;"
+          
+          noroot wp core download https://www.classicpress.net/latest.zip --quiet
+          noroot wp config create --dbhost=localhost --dbname=${domain} --dbuser=classicpress --dbpass=classicpress --quiet
 
         if [[ "${title}" != "none" ]]; then
           for site_title in ${title}; do
