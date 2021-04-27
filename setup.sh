@@ -56,7 +56,7 @@ if [[ "${type}" == "WordPress" ]]; then
           done
         fi
     fi
-  elif [[ "${type}" == "ClassicPress" ]]; then
+elif [[ "${type}" == "ClassicPress" ]]; then
     # Setup MySQL Database
     noroot mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
     noroot mysql -u root -e "CREATE USER IF NOT EXISTS 'classicpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'classicpress';"
@@ -96,4 +96,6 @@ if [[ "${type}" == "WordPress" ]]; then
           done
         fi
     fi
+elif [[ "${type}" == "none" ]];
+  echo "custom"
 fi
