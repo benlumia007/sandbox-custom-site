@@ -96,6 +96,6 @@ elif [[ "${type}" == "ClassicPress" ]]; then
           done
         fi
     fi
-elif [[ "${type}" == "none" ]]; then
+else
   echo "custom"
 fi
