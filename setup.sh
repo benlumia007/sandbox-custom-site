@@ -7,8 +7,8 @@ constants=`get_config_value 'constants' ''`
 title=`get_config_value 'title' "${domain}.test"`
 
 if [[ "${type}" == "none" ]]; then
-    if [[ ! -f "${path}/index.php" ]]; then
-        noroot touch "${path}/index.php"
+    if [[ ! -f "${vm_dir}/public_html/index.php" ]]; then
+        noroot touch "${vm_dir}/public_html/index.php"
     fi
 elif [[ "${type}" == "ClassicPress" ]]; then
     # Setup MySQL Database
