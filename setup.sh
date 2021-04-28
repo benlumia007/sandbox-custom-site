@@ -97,5 +97,7 @@ elif [[ "${type}" == "ClassicPress" ]]; then
         fi
     fi
 else
-  echo "custom"
+    if [[ ! -f "${path}/index.php" ]]; then
+        noroot touch "${path}/index.php"
+    fi
 fi
