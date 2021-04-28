@@ -98,6 +98,6 @@ elif [[ "${type}" == "ClassicPress" ]]; then
     fi
 else
     if [[ ! -f "${vm_dir}public_html/index.php" ]]; then
-        noroot touch "${vm_dir}public_html/index.php"
+        noroot touch "${vm_dir}/public_html/index.php"
     fi
 fi
